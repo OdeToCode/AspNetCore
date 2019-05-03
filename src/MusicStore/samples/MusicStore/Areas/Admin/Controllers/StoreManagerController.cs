@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Options;
+using MusicStore.Components;
 using MusicStore.Models;
 using MusicStore.ViewModels;
 
@@ -19,10 +20,12 @@ namespace MusicStore.Areas.Admin.Controllers
     public class StoreManagerController : Controller
     {
         private readonly AppSettings _appSettings;
+        private readonly IAlbumArtStorage artStorage;
 
-        public StoreManagerController(MusicStoreContext dbContext, IOptions<AppSettings> options)
+        public StoreManagerController(MusicStoreContext dbContext, IOptions<AppSettings> options, IAlbumArtStorage artStorage)
         {
             DbContext = dbContext;
+            this.artStorage = artStorage;
             _appSettings = options.Value;
         }
 
@@ -142,11 +145,17 @@ namespace MusicStore.Areas.Admin.Controllers
             [FromServices] IMemoryCache cache,
             Album album,
             CancellationToken requestAborted)
-        {
+        {           
             if (ModelState.IsValid)
             {
+                using (var reader = album.FileUpload.OpenReadStream())
+                {
+                    album.AlbumArtUrl = await artStorage.SaveAlbumArt(album.FileUpload.FileName, reader);
+                }
+
                 DbContext.Update(album);
                 await DbContext.SaveChangesAsync(requestAborted);
+
                 //Invalidate the cache entry as it is modified
                 cache.Remove(GetCacheKey(album.AlbumId));
                 return RedirectToAction("Index");

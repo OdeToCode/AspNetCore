@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace MusicStore.Models
@@ -28,7 +29,13 @@ namespace MusicStore.Models
 
         [Display(Name = "Album Art URL")]
         [StringLength(1024)]
+        [BindNever]
         public string AlbumArtUrl { get; set; }
+
+        [Display(Name = "Upload album art")]
+        [DataType(DataType.Upload)]
+        [NotMapped]
+        public IFormFile FileUpload { get; set; }
 
         public virtual Genre Genre { get; set; }
         public virtual Artist Artist { get; set; }
