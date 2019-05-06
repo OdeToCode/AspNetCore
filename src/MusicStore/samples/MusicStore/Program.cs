@@ -56,6 +56,7 @@ namespace MusicStore
             builder.ConfigureLogging(factory =>
             {
                 factory.AddConsole();
+                factory.AddAzureWebAppDiagnostics();
 
                 var logLevel = string.Equals(environment, "Development", StringComparison.Ordinal) ? LogLevel.Information : LogLevel.Warning;
                 factory.SetMinimumLevel(logLevel);
