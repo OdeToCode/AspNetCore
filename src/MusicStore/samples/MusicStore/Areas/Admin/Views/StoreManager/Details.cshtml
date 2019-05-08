@@ -1,4 +1,4 @@
-﻿@model MusicStore.Models.Album
+@model MusicStore.Models.Album
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Album</h4>
+    <h4>@Model.Title</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -49,8 +49,8 @@
         <dd>
             @Html.DisplayFor(model => model.AlbumArtUrl)
         </dd>
-
     </dl>
+    <img src="@Url.Content(Model.AlbumArtUrl)" alt="@Model.Title" />
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.AlbumId }) |

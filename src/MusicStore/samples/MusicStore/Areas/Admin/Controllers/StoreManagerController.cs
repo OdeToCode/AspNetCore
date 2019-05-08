@@ -101,6 +101,11 @@ namespace MusicStore.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                using (var reader = album.FileUpload.OpenReadStream())
+                {
+                    album.AlbumArtUrl = await artStorage.SaveAlbumArt(album.FileUpload.FileName, reader);
+                }
+
                 DbContext.Albums.Add(album);
                 await DbContext.SaveChangesAsync(requestAborted);
 
@@ -176,7 +181,7 @@ namespace MusicStore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            return View(album);
+            return View(album); 
         }
 
         //
