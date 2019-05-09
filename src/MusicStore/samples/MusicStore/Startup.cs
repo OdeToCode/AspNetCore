@@ -81,7 +81,7 @@ namespace MusicStore
             // Add the system clock service
             services.AddSingleton<ISystemClock, SystemClock>();
 
-            services.AddTransient<IAlbumArtStorage, FileSystemAlbumArt>();
+            services.AddTransient<IAlbumArtStorage, BlobStorageAlbumArt>();
 
             // Configure Auth
             services.AddAuthorization(options =>
