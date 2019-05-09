@@ -50,6 +50,11 @@ namespace MusicStore.Controllers
             return View(albums);
         }
 
+        public IActionResult Accident()
+        {
+            throw new Exception("Ouch!! I had an accident!");
+        }
+
         public IActionResult Error()
         {
             return View("~/Views/Shared/Error.cshtml");
