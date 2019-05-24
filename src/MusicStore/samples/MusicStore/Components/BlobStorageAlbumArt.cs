@@ -12,10 +12,10 @@ namespace MusicStore.Components
     {
         public async Task<string> SaveAlbumArt(string fileName, Stream content)
         {
-            var baseUri = new Uri("https://psmusicstore.blob.core.windows.net/");
+            var baseUri = new Uri("your URI");
             var containerName = "albumart";
-            var crednetials = new StorageCredentials("psmusicstore", "H/7QoFnEGCVLgiYlF1sQ8j8fJcpbV9GOzlSI9XZ8IJZoP3qQo9+xqKTe2Kf/n9yQ0nh95L3bOVvDF74blNw7gQ==");
-            var client = new CloudBlobClient(baseUri, crednetials);
+            var credentials = new StorageCredentials("your account name", "your key");
+            var client = new CloudBlobClient(baseUri, credentials);
 
             var container = client.GetContainerReference(containerName);
             var blob = container.GetBlockBlobReference(fileName);
