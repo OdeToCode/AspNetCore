@@ -4,11 +4,18 @@
     <Description>Music store application on ASP.NET Core</Description>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <ApplicationInsightsResourceId>/subscriptions/63ffaf6b-218c-43f6-9375-08c1ba9cb6c2/resourcegroups/MusicStore/providers/microsoft.insights/components/MusicStore</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/63ffaf6b-218c-43f6-9375-08c1ba9cb6c2/resourcegroups/MusicStore/providers/microsoft.insights/components/MusicStore</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
  
   <ItemGroup>
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.5.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" />
     <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
+  </ItemGroup>
+ 
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
   </ItemGroup>
 
 </Project>

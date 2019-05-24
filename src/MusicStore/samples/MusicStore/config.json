@@ -1,4 +1,4 @@
-﻿{
+{
   "AppSettings": {
     "SiteTitle": "ASP.NET MVC Music Store",
     "CacheDbResults": true
@@ -11,5 +11,8 @@
       // "Server=(localdb)\\.\\IIS_DB;Database=MusicStore;Trusted_Connection=False;MultipleActiveResultSets=true;User ID=iis_login;Password=********"
       "ConnectionString": "Server=(localdb)\\MSSQLLocalDB;Database=MusicStore;Trusted_Connection=True;MultipleActiveResultSets=true;Connect Timeout=30;"
     }
+  },
+  "ApplicationInsights": {
+    "InstrumentationKey": "4da760b5-300b-4df9-ab58-f96e996f48c4"
   }
 }

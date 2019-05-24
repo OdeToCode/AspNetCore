@@ -17,6 +17,7 @@ namespace MusicStore
                 .Build();
 
             var builder = new WebHostBuilder()
+                .UseApplicationInsights()
                 .UseConfiguration(config)
                 .UseIISIntegration()
                 .UseStartup("MusicStore")

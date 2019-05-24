@@ -1,3 +1,4 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
 @inject IOptions<AppSettings> AppSettings
 <!DOCTYPE html>
 <html>
@@ -23,6 +24,7 @@
     <script type="text/javascript" src="~/Scripts/modernizr-2.6.2.js"></script>
     <script src="~/Scripts/jquery-2.0.3.js"></script>
     <script src="~/Scripts/jquery.signalR-2.0.1.min.js"></script>
+    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
